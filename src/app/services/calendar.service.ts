@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalendarService {
 
-  private baseUrl = 'http://localhost:8080/api/admin/calendar';
+  // ✅ FIX: environment use karo
+  private baseUrl = `${environment.apiUrl}/api/admin/calendar`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // ================= GET ALL CALENDAR EVENTS =================
   getCalendarEvents() {
-    return this.http.get('http://localhost:8080/api/admin/calendar/events');
+    return this.http.get(`${this.baseUrl}/events`);
   }
 
   // ================= GET EVENTS BY MONTH =================
@@ -28,8 +30,5 @@ export class CalendarService {
       `${this.baseUrl}/events?fromDate=${fromDate}&toDate=${toDate}`
     );
   }
-
-  
-
 
 }
