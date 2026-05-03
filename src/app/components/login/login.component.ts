@@ -51,8 +51,8 @@ export class LoginComponent {
           // normalize role (VERY IMPORTANT FIX)
           const role = (res.data.role || '').toUpperCase();
 
-          // localStorage.setItem('token', token);
-          // localStorage.setItem('role', role);
+          localStorage.setItem('token', token);
+          localStorage.setItem('role', role);
 
           console.log('LOGIN SUCCESS | ROLE:', role);
 
