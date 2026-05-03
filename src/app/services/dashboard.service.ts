@@ -2,18 +2,23 @@ import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
 
-  private apiUrl = 'http://localhost:8080/api/admin/dashboard';
+  // ✅ FIX: environment use karo
+  private apiUrl = `${environment.apiUrl}/api/admin/dashboard`;
+  private calendarUrl = `${environment.apiUrl}/api/admin/calendar`;
+  private reportUrl = `${environment.apiUrl}/api/admin/reports`;
 
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  ) {}
+
+  // ================= DASHBOARD =================
   getDashboard(): Observable<any> {
 
     let headers: any = {};
@@ -29,21 +34,24 @@ export class DashboardService {
     return this.http.get<any>(this.apiUrl, { headers });
   }
 
+  // ================= CALENDAR =================
   getCalendarEvents() {
-    return this.http.get('http://localhost:8080/api/admin/calendar/events');
+    return this.http.get(`${this.calendarUrl}/events`);
   }
 
-
+  // ================= PDF REPORT =================
   downloadReportPdf() {
     return this.http.get(
-      'http://localhost:8080/api/admin/reports/pdf',
+      `${this.reportUrl}/pdf`,
       { responseType: 'blob' }
     );
   }
 
-downloadExcelReport() {
-  return this.http.get('http://localhost:8080/api/admin/reports/excel', {
-    responseType: 'blob'
-  });
-}
+  // ================= EXCEL REPORT =================
+  downloadExcelReport() {
+    return this.http.get(
+      `${this.reportUrl}/excel`,
+      { responseType: 'blob' }
+    );
+  }
 }

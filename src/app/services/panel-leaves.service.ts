@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { environment } from '../../environments/environment';
 export interface Leave {
   id?: number;
   employeeEmail?: string;
@@ -16,8 +16,9 @@ export interface Leave {
 })
 export class PanelLeavesService {
 
-  // 👉 Admin API base (ONLY admin operations)
-  private baseUrl = 'http://localhost:8080/api/admin/leaves';
+  // ✅ FIX: environment use
+  private baseUrl = `${environment.apiUrl}/api/admin/leaves`;
+  private calendarUrl = `${environment.apiUrl}/api/admin/calendar`;
 
   constructor(private http: HttpClient) {}
 
@@ -44,19 +45,11 @@ export class PanelLeavesService {
 
   // ================= CALENDAR EVENTS =================
   getEvents(): Observable<any[]> {
-    return this.http.get<any[]>(
-      'http://localhost:8080/api/admin/calendar'
-    );
+    return this.http.get<any[]>(`${this.calendarUrl}`);
   }
 
-  //  getEvents(): Observable<any[]> {
-  //   return this.http.get<any[]>(
-  //     'http://localhost:8080/api/admin/calendar/eveent'
-  //   );
-  // }
-
-
+  // ================= ADD LEAVE =================
   addLeave(data: Leave) {
-  return this.http.post(`${this.baseUrl}/apply`, data);
-}
+    return this.http.post(`${this.baseUrl}/apply`, data);
+  }
 }
