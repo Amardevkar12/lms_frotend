@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 127.0.0.1 --no-hmr",
-    "build": "ng build",
+    "build": "node ./node_modules/@angular/cli/bin/ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
