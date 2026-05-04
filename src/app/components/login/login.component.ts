@@ -25,7 +25,6 @@ export class LoginComponent {
 
   onSubmit(): void {
 
-    // Validation
     if (!this.email || !this.password) {
       this.error = 'Please fill in all fields';
       return;
@@ -40,55 +39,30 @@ export class LoginComponent {
     })
     .pipe(take(1))
     .subscribe({
-
       next: (res: any) => {
         this.loading = false;
 
         if (res?.success && res?.data) {
 
           const token = res.data.token;
-
-          // normalize role (VERY IMPORTANT FIX)
           const role = (res.data.role || '').toUpperCase();
 
           localStorage.setItem('token', token);
           localStorage.setItem('role', role);
 
-          console.log('LOGIN SUCCESS | ROLE:', role);
-
-          // CENTRALIZED ROUTING MAP (FIXED)
           const roleRoutes: any = {
-            'ADMIN': '/admin/dashboard',
-            'ROLE_ADMIN': '/admin/dashboard',
-
-            'MANAGER': '/manager/dashboard',
-            'ROLE_MANAGER': '/manager/dashboard',
-
-            'EMPLOYEE': '/employee/dashboard',
-            'ROLE_EMPLOYEE': '/employee/dashboard'
+            ADMIN: '/admin/dashboard',
+            MANAGER: '/manager/dashboard',
+            EMPLOYEE: '/employee/dashboard'
           };
 
-          const route = roleRoutes[role];
-
-          if (route) {
-            this.router.navigate([route]);
-          } else {
-            console.warn('Unknown role:', role);
-            this.router.navigate(['/login']);
-          }
-
-        } else {
-          this.error = res?.message || 'Login failed';
+          this.router.navigate([roleRoutes[role] || '/login']);
         }
       },
 
       error: (err) => {
         this.loading = false;
-        console.error('Login Error:', err);
-
-        this.error =
-          err?.error?.message ||
-          'Invalid email or password';
+        this.error = err?.error?.message || 'Invalid email or password';
       }
     });
   }

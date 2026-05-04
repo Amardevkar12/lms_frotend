@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
+
 import { ApiResponse, AuthResponse, LoginRequest, RegisterRequest } from '../models/auth.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8080/api/auth';
+  // ✅ FINAL FIX: Hardcoded Railway URL
+  private apiUrl = 'https://lmsproject-production-873b.up.railway.app/api/auth';
 
   private readonly TOKEN_KEY = 'lms_token';
   private readonly USER_KEY = 'lms_user';
@@ -22,7 +24,7 @@ export class AuthService {
     return this.http.post<ApiResponse<AuthResponse>>(`${this.apiUrl}/register`, request)
       .pipe(
         tap(res => {
-          if (res.success && res.data) {
+          if (res?.success && res?.data) {
             this.saveSession(res.data);
           }
         })
@@ -34,7 +36,7 @@ export class AuthService {
     return this.http.post<ApiResponse<AuthResponse>>(`${this.apiUrl}/login`, request)
       .pipe(
         tap(res => {
-          if (res.success && res.data) {
+          if (res?.success && res?.data) {
             this.saveSession(res.data);
           }
         })
@@ -43,8 +45,6 @@ export class AuthService {
 
   // ================= SESSION SAVE =================
   private saveSession(data: AuthResponse): void {
-
-    // 🔥 FIX: normalize role (IMPORTANT)
     const role = (data.role || '').replace('ROLE_', '');
 
     const normalizedData: AuthResponse = {
@@ -95,53 +95,54 @@ export class AuthService {
     return this.getRole() === 'EMPLOYEE';
   }
 
-  // ================= ROUTING =================
+  // ================= DEFAULT ROUTE =================
   getDefaultRoute(): string {
-
     const role = this.getRole();
 
     switch (role) {
       case 'ADMIN':
         return '/admin/dashboard';
-
       case 'MANAGER':
       case 'HR':
         return '/manager/dashboard';
-
       case 'EMPLOYEE':
         return '/employee/dashboard';
-
       default:
         return '/login';
     }
   }
 
+  // ================= ROUTE HELPERS =================
+
   getDashboardRoute(): string {
     return this.getDefaultRoute();
-  }
-
-  getApplyLeaveRoute(): string {
-    const role = this.getRole();
-
-    if (role === 'ADMIN') return '/admin/apply-leave';
-    if (role === 'MANAGER' || role === 'HR') return '/manager/apply-leave';
-    return '/employee/apply-leave';
   }
 
   getMyLeavesRoute(): string {
     const role = this.getRole();
 
-    if (role === 'ADMIN') return '/admin/my-leaves';
-    if (role === 'MANAGER' || role === 'HR') return '/manager/my-leaves';
-    return '/employee/my-leaves';
+    switch (role) {
+      case 'ADMIN':
+        return '/admin/leaves';
+      case 'MANAGER':
+      case 'HR':
+        return '/manager/leaves';
+      case 'EMPLOYEE':
+        return '/employee/my-leaves';
+      default:
+        return '/login';
+    }
   }
 
-  getLeaveBalanceRoute(): string {
+  getApplyLeaveRoute(): string {
     const role = this.getRole();
 
-    if (role === 'ADMIN') return '/admin/leave-balance';
-    if (role === 'MANAGER' || role === 'HR') return '/manager/leave-balance';
-    return '/employee/leave-balance';
+    switch (role) {
+      case 'EMPLOYEE':
+        return '/employee/apply-leave';
+      default:
+        return '/login';
+    }
   }
 
   // ================= LOGOUT =================
