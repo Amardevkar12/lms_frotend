@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "leave-management-frontend",
+  "compatibility_date": "2026-05-04",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "dist\\leave-management-frontend\\browser"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}

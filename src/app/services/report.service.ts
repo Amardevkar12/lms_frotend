@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from '../../environments/environment';
 @Injectable({ providedIn: 'root' })
 export class ReportService {
 
-  private baseUrl = 'http://localhost:8080/api/admin/reports';
+  // ✅ FIX: environment use
+  private baseUrl = `${environment.apiUrl}/api/admin/reports`;
 
   constructor(private http: HttpClient) {}
 
@@ -19,12 +20,12 @@ export class ReportService {
     return this.http.get<any>(url);
   }
 
-  // ================= EXPORT REPORT (FIX ADDED) =================
+  // ================= EXPORT REPORT =================
   exportReport() {
     const url = `${this.baseUrl}/export`;
 
     return this.http.get(url, {
-      responseType: 'blob'   // IMPORTANT for file download
+      responseType: 'blob' // file download
     });
   }
 }

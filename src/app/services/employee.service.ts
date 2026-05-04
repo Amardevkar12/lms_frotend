@@ -2,19 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Employee } from '../models/employee';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
 
-  private readonly API_URL = 'http://localhost:8080/api/admin';
+  // ✅ FIX: environment use
+  private readonly API_URL = `${environment.apiUrl}/api/admin`;
 
   constructor(private http: HttpClient) {}
 
   // ================= AUTH HEADERS =================
   private getHeaders() {
-    const token = localStorage.getItem('token');
+    // ⚠️ SAME KEY use karo jo AuthService me hai
+    const token = localStorage.getItem('lms_token');
 
     return {
       headers: new HttpHeaders({

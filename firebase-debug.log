@@ -1,0 +1,87 @@
+[debug] [2026-05-04T07:04:28.524Z] ----------------------------------------------------------------------
+[debug] [2026-05-04T07:04:28.528Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ganes\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2026-05-04T07:04:28.528Z] CLI Version:   15.16.0
+[debug] [2026-05-04T07:04:28.528Z] Platform:      win32
+[debug] [2026-05-04T07:04:28.528Z] Node Version:  v22.15.0
+[debug] [2026-05-04T07:04:28.529Z] Time:          Mon May 04 2026 12:34:28 GMT+0530 (India Standard Time)
+[debug] [2026-05-04T07:04:28.529Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\ganes\OneDrive\Documents\Desktop\lms-complete final\lms\frontend
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2026-05-04T07:04:48.183Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-04T07:04:48.184Z] > authorizing via signed-in user (amardevkar059@gmail.com)
+[debug] [2026-05-04T07:05:02.731Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:05:02.732Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:05:02.735Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2026-05-04T07:05:02.735Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"LMS Angular App"}
+[debug] [2026-05-04T07:05:04.003Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2026-05-04T07:05:04.003Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_NOT_VALID","suggestedProjectId":"lms-angular-app-6c824"}
+[debug] [2026-05-04T07:05:07.418Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:05:07.418Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:05:07.419Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2026-05-04T07:05:07.420Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"LMS Angular App"}
+[debug] [2026-05-04T07:05:07.982Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2026-05-04T07:05:07.982Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_NOT_VALID","suggestedProjectId":"lms-angular-app-68ca3"}
+[debug] [2026-05-04T07:05:47.168Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:05:47.169Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:05:47.170Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2026-05-04T07:05:47.170Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"LMS Angular Applms-angular-app"}
+[debug] [2026-05-04T07:05:47.880Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2026-05-04T07:05:47.881Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_NOT_VALID","suggestedProjectId":"lms-angular-applms-angular-app"}
+[debug] [2026-05-04T07:05:59.312Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:05:59.312Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:05:59.313Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2026-05-04T07:05:59.313Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"lms-angular-app"}
+[debug] [2026-05-04T07:06:00.033Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2026-05-04T07:06:00.033Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_UNAVAILABLE","suggestedProjectId":"lms-angular-app-670e6"}
+[debug] [2026-05-04T07:06:23.165Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:06:23.165Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:06:23.167Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2026-05-04T07:06:23.167Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"lms-angular-app-68ca3"}
+[debug] [2026-05-04T07:06:23.656Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2026-05-04T07:06:23.657Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_AVAILABLE","suggestedProjectId":"lms-angular-app-68ca3"}
+[debug] [2026-05-04T07:06:38.271Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:06:38.271Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:06:38.272Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2026-05-04T07:06:38.272Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"lms-angular-app-68ca3","name":"LMS Angular App"}
+[debug] [2026-05-04T07:06:38.913Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2026-05-04T07:06:38.913Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/create_project.global.6122421916762559077"}
+[debug] [2026-05-04T07:06:38.916Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:06:38.916Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:06:38.916Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6122421916762559077 [none]
+[debug] [2026-05-04T07:06:40.376Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6122421916762559077 200
+[debug] [2026-05-04T07:06:40.377Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6122421916762559077 {"name":"operations/create_project.global.6122421916762559077"}
+[debug] [2026-05-04T07:06:40.889Z] [Project Creation Poller] Retrying task index 0
+[debug] [2026-05-04T07:06:40.890Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:06:40.890Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:06:40.891Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6122421916762559077 [none]
+[debug] [2026-05-04T07:06:41.244Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6122421916762559077 200
+[debug] [2026-05-04T07:06:41.245Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6122421916762559077 {"name":"operations/create_project.global.6122421916762559077","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"339684814699","projectId":"lms-angular-app-68ca3","lifecycleState":"ACTIVE","name":"LMS Angular App","createTime":"2026-05-04T07:06:39.211Z"}}
+[debug] [2026-05-04T07:06:41.250Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:06:41.250Z] Checked if tokens are valid: true, expires at: 1777881851255
+[debug] [2026-05-04T07:06:41.251Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/lms-angular-app-68ca3:addFirebase [none]
+[debug] [2026-05-04T07:06:45.809Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/lms-angular-app-68ca3:addFirebase 403
+[debug] [2026-05-04T07:06:45.809Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/lms-angular-app-68ca3:addFirebase {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2026-05-04T07:06:45.811Z] Request to https://firebase.googleapis.com/v1beta1/projects/lms-angular-app-68ca3:addFirebase had HTTP Error: 403, The caller does not have permission
+[debug] [2026-05-04T07:06:46.143Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/lms-angular-app-68ca3:addFirebase had HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\ganes\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:53:12)
+    at RetryOperation._fn (C:\Users\ganes\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:333:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to add Firebase to Google Cloud Platform project. See firebase-debug.log for more info.
