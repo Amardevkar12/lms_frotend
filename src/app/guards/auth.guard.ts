@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth.service';
 // 🔹 Helper function to normalize role
 function getCleanRole(authService: AuthService): string {
   const role = authService.getRole(); // may be ROLE_ADMIN
-  return role ? role.replace('ROLE_', '') : '';
+  return role ? role.trim().toUpperCase().replace(/^ROLE_/, '') : '';
 }
 
 // ================= COMMON AUTH CHECK =================

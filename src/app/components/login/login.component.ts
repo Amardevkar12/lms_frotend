@@ -46,36 +46,12 @@ export class LoginComponent {
         this.loading = false;
 
         if (res?.success && res?.data) {
+          const route = this.authService.getDefaultRoute();
 
-          const token = res.data.token;
-
-          // normalize role (VERY IMPORTANT FIX)
-          const role = (res.data.role || '').toUpperCase();
-
-          localStorage.setItem('token', token);
-          localStorage.setItem('role', role);
-
-          console.log('LOGIN SUCCESS | ROLE:', role);
-
-          // CENTRALIZED ROUTING MAP (FIXED)
-          const roleRoutes: any = {
-            'ADMIN': '/admin/dashboard',
-            'ROLE_ADMIN': '/admin/dashboard',
-
-            'MANAGER': '/manager/dashboard',
-            'ROLE_MANAGER': '/manager/dashboard',
-
-            'EMPLOYEE': '/employee/dashboard',
-            'ROLE_EMPLOYEE': '/employee/dashboard'
-          };
-
-          const route = roleRoutes[role];
-
-          if (route) {
-            this.router.navigate([route]);
+          if (route !== '/login') {
+            this.router.navigateByUrl(route);
           } else {
-            console.warn('Unknown role:', role);
-            this.router.navigate(['/login']);
+            this.error = 'Login successful, but user role is not recognized';
           }
 
         } else {

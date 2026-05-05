@@ -13,6 +13,8 @@ export class AuthService {
 
   private readonly TOKEN_KEY = 'lms_token';
   private readonly USER_KEY = 'lms_user';
+  private readonly LEGACY_TOKEN_KEY = 'token';
+  private readonly LEGACY_ROLE_KEY = 'role';
 
   constructor(
     private http: HttpClient,
@@ -45,7 +47,7 @@ export class AuthService {
 
   // ================= SESSION SAVE =================
   private saveSession(data: AuthResponse): void {
-    const role = (data.role || '').replace('ROLE_', '');
+    const role = this.normalizeRole(data.role);
 
     const normalizedData: AuthResponse = {
       ...data,
@@ -54,6 +56,8 @@ export class AuthService {
 
     localStorage.setItem(this.TOKEN_KEY, data.token);
     localStorage.setItem(this.USER_KEY, JSON.stringify(normalizedData));
+    localStorage.setItem(this.LEGACY_TOKEN_KEY, data.token);
+    localStorage.setItem(this.LEGACY_ROLE_KEY, role);
   }
 
   // ================= GETTERS =================
@@ -74,7 +78,8 @@ export class AuthService {
   }
 
   getRole(): string | null {
-    return this.getUser()?.role || null;
+    const role = this.getUser()?.role || localStorage.getItem(this.LEGACY_ROLE_KEY);
+    return role ? this.normalizeRole(role) : null;
   }
 
   isLoggedIn(): boolean {
@@ -154,5 +159,11 @@ export class AuthService {
   clearSession(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.USER_KEY);
+    localStorage.removeItem(this.LEGACY_TOKEN_KEY);
+    localStorage.removeItem(this.LEGACY_ROLE_KEY);
+  }
+
+  private normalizeRole(role: string | null | undefined): string {
+    return (role || '').trim().toUpperCase().replace(/^ROLE_/, '');
   }
 }
