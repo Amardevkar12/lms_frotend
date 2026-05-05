@@ -6,8 +6,8 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
 
   const authService = inject(AuthService);
 
-  // ❌ DO NOT attach token to auth APIs
-  if (req.url.includes('/api/auth/')) {
+  // 🔴 Skip ALL auth endpoints properly
+  if (req.url.includes('/auth/')) {
     return next(req);
   }
 
