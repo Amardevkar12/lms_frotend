@@ -4,12 +4,12 @@ import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { ApiResponse, AuthResponse, LoginRequest, RegisterRequest } from '../models/auth.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  // ✅ FINAL FIX: Hardcoded Railway URL
-  private apiUrl = 'https://lmsproject-production-873b.up.railway.app/api/auth';
+  private apiUrl = `${environment.apiUrl}/api/auth`;
 
   private readonly TOKEN_KEY = 'lms_token';
   private readonly USER_KEY = 'lms_user';
