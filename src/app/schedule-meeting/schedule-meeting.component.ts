@@ -12,7 +12,6 @@ import { MeetingService } from '../services/meeting.service';
 })
 export class ScheduleMeetingComponent {
 
-  // ================= FORM MODEL =================
   meeting = {
     title: '',
     date: '',
@@ -21,16 +20,13 @@ export class ScheduleMeetingComponent {
     description: ''
   };
 
-  // ================= UI STATES =================
   participantError = false;
   participantsArray: string[] = [];
   loading = false;
 
   constructor(private meetingService: MeetingService) {}
 
-  // ================= PARTICIPANTS HANDLER =================
   onParticipantsChange(): void {
-
     if (!this.meeting.participants) {
       this.participantsArray = [];
       this.participantError = false;
@@ -48,20 +44,21 @@ export class ScheduleMeetingComponent {
     this.participantsArray = emails;
   }
 
-  // ================= SAVE MEETING =================
   saveMeeting(): void {
-
-    // ✅ required validation
-    if (!this.meeting.title || !this.meeting.date || !this.meeting.time) {
-      alert('⚠️ Please fill all required fields');
+    if (!this.meeting.title || !this.meeting.date || !this.meeting.time || !this.meeting.participants.trim()) {
+      alert('Please fill all required fields');
       return;
     }
 
-    // ✅ email validation
     this.onParticipantsChange();
 
     if (this.participantError) {
-      alert('❌ Invalid email format');
+      alert('Invalid email format');
+      return;
+    }
+
+    if (this.participantsArray.length === 0) {
+      alert('Please add at least one participant email');
       return;
     }
 
@@ -75,20 +72,23 @@ export class ScheduleMeetingComponent {
     this.loading = true;
 
     this.meetingService.createMeeting(payload).subscribe({
-      next: () => {
+      next: (res) => {
         this.loading = false;
-        alert('✅ Meeting Scheduled & Emails Sent!');
+        if (res?.emailSent === false) {
+          alert(res?.message || 'Meeting scheduled, but email was not sent. Please check backend mail settings.');
+        } else {
+          alert(`Meeting Scheduled & Emails Sent to ${res?.sentEmails?.length || this.participantsArray.length} participant(s)!`);
+        }
         this.resetForm();
       },
       error: (err) => {
         this.loading = false;
         console.error('Meeting Error:', err);
-        alert('❌ Failed to schedule meeting');
+        alert(err.error?.message || 'Failed to schedule meeting');
       }
     });
   }
 
-  // ================= RESET =================
   resetForm(): void {
     this.meeting = {
       title: '',
